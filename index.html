@@ -7,7 +7,10 @@
 </head>
 <body>
 
-  <h1>College Event Aggregator</h1>
+    <h1 id="main-title">College Event Aggregator</h1>
+      <div id="notification-banner"></div>
+
+    <input type="text" id="search-box" placeholder="Search events by title..." oninput="searchEvents()">
 
   <div id="filter-buttons">
     <button onclick="filterEvents('All')">All</button>
@@ -29,10 +32,11 @@
       <option value="Cultural">Cultural</option>
     </select>
     <input type="date" id="input-date">
-    <input type="text" id="input-description" placeholder="Short description">
+        <input type="text" id="input-description" placeholder="Short description">
+    <input type="text" id="input-image" placeholder="Image URL (optional)">
     <button onclick="addEvent()">Add Event</button>
   </div>
 
-  <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
