@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Event Aggregator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>College Event Aggregator</h1>
+
+  <div id="filter-buttons">
+    <button onclick="filterEvents('All')">All</button>
+    <button onclick="filterEvents('Workshop')">Workshop</button>
+    <button onclick="filterEvents('Hackathon')">Hackathon</button>
+    <button onclick="filterEvents('Seminar')">Seminar</button>
+    <button onclick="filterEvents('Cultural')">Cultural</button>
+  </div>
+
+  <div id="event-list"></div>
+
+  <h2>Add New Event</h2>
+  <div id="add-event-form">
+    <input type="text" id="input-title" placeholder="Event title">
+    <select id="input-category">
+      <option value="Workshop">Workshop</option>
+      <option value="Hackathon">Hackathon</option>
+      <option value="Seminar">Seminar</option>
+      <option value="Cultural">Cultural</option>
+    </select>
+    <input type="date" id="input-date">
+    <input type="text" id="input-description" placeholder="Short description">
+    <button onclick="addEvent()">Add Event</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
