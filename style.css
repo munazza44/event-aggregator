@@ -59,12 +59,27 @@ h2 {
 
 .category-tag {
   display: inline-block;
-  background-color: #3498db;
   color: white;
   font-size: 12px;
   padding: 3px 8px;
   border-radius: 12px;
   margin-bottom: 8px;
+}
+
+.category-tag.workshop {
+  background-color: #2980b9; /* blue */
+}
+
+.category-tag.hackathon {
+  background-color: #e74c3c; /* red */
+}
+
+.category-tag.seminar {
+  background-color: #8e44ad; /* purple */
+}
+
+.category-tag.cultural {
+  background-color: #e91e8c; /* pink */
 }
 
 .event-card h2 {
@@ -122,4 +137,99 @@ h2 {
 
 #add-event-form button:hover {
   background-color: #21618c;
+}
+.event-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.edit-btn, .delete-btn {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #f39c12;
+}
+
+.edit-btn:hover {
+  background-color: #d68910;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+#search-box {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 15px auto 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
+}
+.tag-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.status-tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: white;
+}
+
+.status-tag.upcoming {
+  background-color: #27ae60;
+}
+
+.status-tag.today {
+  background-color: #f39c12;
+}
+
+.status-tag.past {
+  background-color: #95a5a6;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+
+#main-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 34px;
+  letter-spacing: 0.5px;
+}
+#notification-banner {
+  display: none;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 15px auto;
+  max-width: 700px;
+  text-align: center;
+  font-size: 14px;
 }
