@@ -1,42 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>College Event Aggregator</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Aggregator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <h1 id="main-title">College Event Aggregator</h1>
-      <div id="notification-banner"></div>
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fa-solid fa-graduation-cap brand-icon"></i>
+            <span>College Event Aggregator</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn active"><i class="fa-solid fa-compass"></i> Discover</button>
+            <button class="nav-btn" onclick="filterEvents('Saved', document.querySelector('.filter-btn[data-cat=\'Saved\']'))"><i class="fa-regular fa-bookmark"></i> My Events</button>
+        </div>
+    </nav>
 
-    <input type="text" id="search-box" placeholder="Search events by title..." oninput="searchEvents()">
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <div class="hero-badge">
+            <i class="fa-solid fa-sparkles"></i> 17 upcoming events on campus
+        </div>
+        <h1 class="hero-title">Discover events that<br>shape your college life</h1>
+        <p class="hero-subtitle">From hackathons to career fairs, music festivals to study workshops – find and register for everything happening on campus in one place.</p>
+        <div class="hero-actions">
+            <button class="btn-primary" id="mode-btn" onclick="toggleMode()">Create an Event <i class="fa-solid fa-arrow-right"></i></button>
+            <a href="#events-section" class="btn-secondary">Browse Events</a>
+        </div>
+    </header>
 
-  <div id="filter-buttons">
-    <button onclick="filterEvents('All')">All</button>
-    <button onclick="filterEvents('Workshop')">Workshop</button>
-    <button onclick="filterEvents('Hackathon')">Hackathon</button>
-    <button onclick="filterEvents('Seminar')">Seminar</button>
-    <button onclick="filterEvents('Cultural')">Cultural</button>
-  </div>
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-container" id="events-section">
 
-  <div id="event-list"></div>
+        <!-- SEARCH BAR WITH ICON -->
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="search-box" placeholder="Search events, locations, topics..." oninput="searchEvents()">
+        </div>
 
-  <h2>Add New Event</h2>
-  <div id="add-event-form">
-    <input type="text" id="input-title" placeholder="Event title">
-    <select id="input-category">
-      <option value="Workshop">Workshop</option>
-      <option value="Hackathon">Hackathon</option>
-      <option value="Seminar">Seminar</option>
-      <option value="Cultural">Cultural</option>
-    </select>
-    <input type="date" id="input-date">
-        <input type="text" id="input-description" placeholder="Short description">
-    <input type="text" id="input-image" placeholder="Image URL (optional)">
-    <button onclick="addEvent()">Add Event</button>
-  </div>
+        <!-- CATEGORY PILL FILTERS WITH ICONS -->
+        <div id="filter-buttons" class="category-pills">
+            <button class="filter-btn active" data-cat="All" onclick="filterEvents('All', this)">
+                <i class="fa-solid fa-layer-group"></i> All
+            </button>
+            <button class="filter-btn" data-cat="Technology" onclick="filterEvents('Technology', this)">
+                <i class="fa-solid fa-laptop-code"></i> Technology
+            </button>
+            <button class="filter-btn" data-cat="Music" onclick="filterEvents('Music', this)">
+                <i class="fa-solid fa-music"></i> Music
+            </button>
+            <button class="filter-btn" data-cat="Sports" onclick="filterEvents('Sports', this)">
+                <i class="fa-solid fa-trophy"></i> Sports
+            </button>
+            <button class="filter-btn" data-cat="Arts" onclick="filterEvents('Arts', this)">
+                <i class="fa-solid fa-palette"></i> Arts
+            </button>
+            <button class="filter-btn" data-cat="Academic" onclick="filterEvents('Academic', this)">
+                <i class="fa-solid fa-book-bookmark"></i> Academic
+            </button>
+            <button class="filter-btn" data-cat="Social" onclick="filterEvents('Social', this)">
+                <i class="fa-solid fa-users"></i> Social
+            </button>
+            <button class="filter-btn" data-cat="Saved" onclick="filterEvents('Saved', this)">
+                <i class="fa-solid fa-heart"></i> Saved
+            </button>
+        </div>
 
-    <script type="module" src="script.js"></script>
+        <div class="section-header">
+            <h2 id="event-count-label">17 events</h2>
+        </div>
+
+        <!-- EVENT CARDS GRID -->
+        <div id="event-list" class="event-grid"></div>
+
+        <!-- ADD EVENT FORM (ORGANIZER ONLY) -->
+        <div class="form-card" id="organizer-section" style="display: none;">
+            <h2>➕ Add New Event (Organizer Portal)</h2>
+            <form id="add-event-form">
+                <input type="text" id="input-title" placeholder="Event Title" required>
+                <select id="input-category">
+                    <option value="Technology">Technology</option>
+                    <option value="Music">Music</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Social">Social</option>
+                </select>
+                <input type="date" id="input-date" required>
+                <input type="text" id="input-description" placeholder="Short Description" required>
+                <input type="text" id="input-image" placeholder="Image URL (optional)">
+                <button type="button" id="add-event-form-button" onclick="addEvent()">Add Event</button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- REGISTRATION MODAL POP-UP -->
+    <div id="register-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-event-title">Event Registration</h2>
+            <form id="registration-form" onsubmit="handleRegistration(event)">
+                <input type="text" id="student-name" placeholder="Full Name" required>
+                <input type="text" id="student-id" placeholder="Roll Number / Student ID" required>
+                <input type="email" id="student-email" placeholder="College Email" required>
+                <button type="submit" class="submit-reg-btn">Confirm Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
